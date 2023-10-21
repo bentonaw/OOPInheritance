@@ -6,48 +6,59 @@ using System.Threading.Tasks;
 
 namespace OOPInheritance
 {
-    internal class Animal
+    abstract class Animal
     {
         public string Name { get; set; }
         public string Color { get; set; }
         public string FavoriteFood { get; set; }
-        public int Age {  get; set; }
-        public bool NightAnimal { get; set; }
+        public int Age { get; set; }
+        public string Gender { get; set; }
+        public bool IsNightAnimal { get; set; }
+        public string Species { get;}
 
-        public Animal(string name, string color, string favoritefood, int age, bool nightanimal)
+
+        public Animal(string name = "Bob", string color = "black and white", string favoriteFood = "broccoli", int age =100, string gender = "unknown", bool isNightAnimal = false, string species= "not human")
         {
             Name = name;
             Color = color;
-            FavoriteFood = favoritefood;
+            FavoriteFood = favoriteFood;
             Age = age;
-            NightAnimal = nightanimal;
+            Gender = gender;
+            IsNightAnimal = isNightAnimal;
+            Species = species;
         }
 
-        public void Eat()
+        public void doEat()
         {
-            Console.WriteLine($"{Name} loves to eat {FavoriteFood}");
+            Console.WriteLine($"{Name} loves to eat {FavoriteFood}.");
         }
 
-        public void Sleep()
+        public virtual void getDescription()
+        {
+            Console.WriteLine($"The {Color} {GetType().Name} is named {Name} and is {Age} years old {Gender} and enjoys {FavoriteFood}.");
+        }
+
+        public virtual void checkSleep()
         {
             DateTime Now = DateTime.Now;
             TimeSpan Morning = new TimeSpan(6, 0, 0);
             TimeSpan Evening = new TimeSpan(18, 0, 0);
 
-            if ((Now.TimeOfDay >= Morning && Now.TimeOfDay < Evening) || (Now.TimeOfDay >= Morning && Now.TimeOfDay < Evening)! & NightAnimal) 
+            if ((Now.TimeOfDay >= Morning && Now.TimeOfDay < Evening !& IsNightAnimal) || (Now.TimeOfDay < Morning && Now.TimeOfDay >= Evening) && IsNightAnimal) 
             {
                 Console.WriteLine($"{Name} is up and about!");
             }
-            else if ((Now.TimeOfDay >= Morning && Now.TimeOfDay < Evening) && NightAnimal)
+            else if ((Now.TimeOfDay >= Morning && Now.TimeOfDay < Evening) && IsNightAnimal)
             {
                 Console.WriteLine($"{Name} is most likely napping at the moment and waiting for the dark to roam");
             }
-                
+            else
+            {
+                Console.WriteLine($"{Name} is fast asleep");
+            }
         }
 
-        public void makeSound()
-        {
-
-        }
+        public abstract void makeSound(string s = "huh");
+        
     }
 }
