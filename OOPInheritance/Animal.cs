@@ -58,7 +58,7 @@ namespace OOPInheritance
             }
         }
 
-        public abstract void makeSound(string s = "huh");
+        public abstract void makeSound(string s = "hej");
         
     }
 }

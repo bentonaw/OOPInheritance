@@ -34,7 +34,7 @@ namespace OOPInheritance
         {
             if (IsSleeping)
             {
-                Console.WriteLine("The sloth is snoring");
+                Console.WriteLine("...");
             }
             else
             {
